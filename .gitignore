@@ -1,0 +1,6 @@
+test.db
+.devbox
+.pytest_cache
+.venv
+.env
+*.db
