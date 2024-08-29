@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authservice-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: authservice
+  template:
+    metadata:
+      labels:
+        app: authservice
+    spec:
+      containers:
+        - name: authservice
+          image: authservice:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DEBUG
+              value: "True"
+            - name: SECRET_KEY
+              value: "8f3a12b9e7c54d6a9f0d2e1c8b7a3f6e"
+            - name: DATABASE_URL
+              value: "sqlite:////app/prod_database.db"
+          command:
+            [
+              "poetry",
+              "run",
+              "quart",
+              "--app",
+              "auth.main:app",
+              "--debug",
+              "run",
+              "--host",
+              "0.0.0.0",
+              "--port",
+              "8080",
+            ]
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            privileged: true
+            runAsUser: 0
+      hostNetwork: true
+

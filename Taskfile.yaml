@@ -1,0 +1,41 @@
+# https://taskfile.dev
+
+version: "3"
+
+env:
+  APP: "auth-service"
+
+tasks:
+  welcome:
+    cmds:
+      - echo  "👋 Welcome! 👋"
+      - echo "1. If this is your first time, you may want to run 'task init-local'."
+      - echo "2. After that, run 'task run-local' to hot reload the service locally."
+      - echo "⚡️ Happy coding! ⚡️"
+    silent: true
+  init-local:
+    cmds:
+      - poetry shell
+      - poetry install
+      - cp .env.template .env
+      - poetry run setup_db
+  run-local:
+    cmds:
+      - poetry run quart --app auth.main:app --debug run
+  fmt:
+    cmds:
+      - poetry run black --skip-string-normalization --line-length 120 auth
+  lint:
+    cmds:
+      - poetry run ruff check auth
+  type-check:
+    cmds:
+      - poetry run pyright auth
+  test:
+    cmds:
+      - poetry run pytest tests -v --cov=auth --cov-report term-missing --cov-report lcov:cov.info
+  preflight:
+    cmds:
+      - task: fmt
+      - task: lint
+      - task: type-check
