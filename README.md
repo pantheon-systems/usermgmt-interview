@@ -10,7 +10,7 @@
 
 ## Pre-requisites
 
-- [Devbox](https://www.jetify.dev/devbox)
+- [Devbox](https://www.jetify.com/devbox)
 
 ## Quickstart
 
