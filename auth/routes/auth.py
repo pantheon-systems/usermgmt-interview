@@ -13,15 +13,15 @@ engine = create_engine(config.DATABASE_URL)
 
 
 @auth_bp.route("/", methods=["GET"])
-async def home():
+def home():
     return jsonify({
         "status": "OK"  
     }), 200
      
 
 @auth_bp.route("/register", methods=["POST"])
-async def register():
-    data = await request.json
+def register():
+    data = request.json
     user_create = UserCreate(**data)
 
     with Session(engine) as session:

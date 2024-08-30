@@ -17,6 +17,7 @@ def client(app):
     return app.test_client()
 
 
+@pytest.mark.asyncio
 async def test_index(client):
     response = await client.get("/")
     body = response.get_json()
