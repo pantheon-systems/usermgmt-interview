@@ -5,5 +5,3 @@ test.db
 .env
 *.db
 *.pyc
-__pycache__/
-*.py[cod]

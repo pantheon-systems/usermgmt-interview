@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
     SECRET_KEY = "8f3a12b9e7c54d6a9f0d2e1c8b7a3f6e"
     DATABASE_URL = "sqlite:///./test.db"
@@ -9,5 +10,6 @@ class Config:
     @staticmethod
     def load_config():
         return Config()
+
 
 config = Config.load_config()

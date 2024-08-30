@@ -15,10 +15,12 @@ tasks:
     silent: true
   init-local:
     cmds:
-      - poetry shell
       - poetry install
       - cp .env.template .env
       - poetry run setup_db
+  shell:
+    cmds:
+      - poetry shell
   run-local:
     cmds:
       - poetry run quart --app auth.main:app --debug run
