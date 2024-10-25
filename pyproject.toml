@@ -10,7 +10,7 @@ setup_db = "auth.setup_db:setup_database"
 
 [tool.poetry.dependencies]
 python = "3.12.3"
-quart = "^0.19.6"
+quart = "^0.19.7"
 sqlalchemy = "^2.0.32"
 pydantic = "^2.8.2"
 pyjwt = "^2.9.0"
